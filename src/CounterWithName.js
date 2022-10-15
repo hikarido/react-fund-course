@@ -1,6 +1,6 @@
 import React from "react";
 
-function App() {
+function CounterWithName() {
   const [countName, setCountName] = React.useState('Имя счетчика')
   const [likes, setLikes] = React.useState(0);
   
@@ -24,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default CounterWithName;
