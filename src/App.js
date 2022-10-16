@@ -16,9 +16,7 @@ function App() {
     <div className="App">
       <h1 style={{textAlign: 'center'}}>Список постов</h1>
       {posts.map(post =>
-        <div key={post.id}>
-          <PostItem post={post}/>
-        </div>  
+          <PostItem key={post.id} post={post}/>
       )}
     </div>
   );
