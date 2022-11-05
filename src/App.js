@@ -19,7 +19,7 @@ function App() {
     { id: 3, tytle: "Java", body: "Java это язык программирования" }
   ]);
 
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('');
 
   const addNewPost = (e) => {
     e.preventDefault()
@@ -33,19 +33,18 @@ function App() {
   return (
     <div className="App">
       <form>
-        // управляемый инпет
         <MyInput
           value={title}
           type="text"
           onChange={e => setTitle(e.target.value)}
           placeholder="Название поста" />
-        {/* <MyInput
+        <MyInput
           ref={bodyInputRef}
           type="text"
-          placeholder="Описание поста" /> */}
-        
-        // не управляемый компонент 
-        <input ref={bodyInputRef} type="text"/>
+          placeholder="Описание поста" />
+
+        {/* <input ref={bodyInputRef} type="text"/> */}
+
         <MyButton onClick={addNewPost}>Создать пост</MyButton>
       </form>
       <PostList posts={posts} title="Список постов о javaScript" />
