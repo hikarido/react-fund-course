@@ -1,58 +1,29 @@
-import React, { useRef, useState } from "react";
-import CounterAsClass from "./components/CounterAsClass";
+import React, { useState } from "react";
 import './styles/App.css';
-import PostItem from "./components/PostItem";
 import PostList from "./components/PostList";
-import MyButton from "./components/UI/button/MyButton";
-import MyInput from "./components/UI/input/MyInput";
+import PostForm from "./components/PostForm";
 
 function App() {
+
   const [posts, setPosts] = useState([
-    { id: 1, title: "Java Script", body: "Java script это язык программирования" },
-    { id: 2, title: "Java Script", body: "Java script это язык программирования" },
-    { id: 3, title: "Java Script", body: "Java script это язык программирования" }
-  ]);
-
-  const [postsAboutJava, setPostsAboutJava] = useState([
-    { id: 1, title: "Java", body: "Java это язык программирования" },
+    { id: 1, title: "Java", body: "Java это язык" },
     { id: 2, title: "Java", body: "Java это язык программирования" },
-    { id: 3, title: "Java", body: "Java это язык программирования" }
+    { id: 3, title: "Java", body: "Пост" }
   ]);
 
-  const emptyPost = {id: -1, title: '', body: ''}
-  const [post, setPost] = useState(emptyPost)
 
-  const addNewPost = (e) => {
-    e.preventDefault()
-    const newPost  = {
-      id: Date.now(),
-      title: post.title,
-      body: post.body
-    }
-
+  const createPost = (newPost) => {
     setPosts([...posts, newPost])
-    setPost(emptyPost)
+  }
 
+  const removePost = (post) => {
+    setPosts(posts.filter(p => p.id !== post.id))
   }
 
   return (
     <div className="App">
-      <form>
-        <MyInput
-          value={post.title}
-          type="text"
-          onChange={e => setPost({...post, title: e.target.value})}
-          placeholder="Название поста" />
-        <MyInput
-          value={post.body}
-          type="text"
-          onChange={e => setPost({...post, body: e.target.value})}
-          placeholder="Описание поста" />
-
-        <MyButton onClick={addNewPost}>Создать пост</MyButton>
-      </form>
-      <PostList posts={posts} title="Список постов о javaScript" />
-      <PostList posts={postsAboutJava} title="Список постов о java" />
+      <PostForm create={createPost} />
+      <PostList remove={removePost} posts={posts} title="Список постов о java" />
     </div>
   );
 }

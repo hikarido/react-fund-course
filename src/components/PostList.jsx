@@ -8,7 +8,7 @@ import PostItem
 // но мы сделали с деструктивизацией(распоковкой)
 // const PostList = ({posts}) => {
 
-const PostList = ({posts, title}) => {
+const PostList = ({posts, title, remove}) => {
     return (
         <div>
             <h1 style={{ textAlign: 'center' }}>
@@ -16,7 +16,7 @@ const PostList = ({posts, title}) => {
             </h1>
             {posts.map((post, index) =>
                 <div key={post.id}>
-                    <PostItem index={index}post={post} />
+                    <PostItem remove={remove} index={index} post={post} />
                 </div>
             )}
         </div>
